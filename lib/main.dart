@@ -98,6 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+      persistentFooterButtons: botonesDePie,
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -127,11 +128,14 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.bedtime),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  List<Widget> get botonesDePie {
+    return [
+      TextButton(onPressed: _incrementCounter, child: Icon(Icons.add)),
+      TextButton(onPressed: _decrementCounter, child: Icon(Icons.remove)),
+      TextButton(onPressed: _restartCounter, child: Icon(Icons.exposure_zero)),
+    ];
   }
 }
