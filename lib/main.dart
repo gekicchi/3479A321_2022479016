@@ -56,19 +56,27 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      persistentFooterButtons: botonesDePie,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'has presionado el boton:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      //persistentFooterButtons: botonesDePie,
+      body: Card(
+        color: Colors.brown,
+        shadowColor: Colors.orange,
+        margin: const EdgeInsets.all(45.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'has presionado el boton:',
+              ),
+              Text(
+                '$_counter',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              Row(
+                children: botonesDePie,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -76,9 +84,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Widget> get botonesDePie {
     return [
-      TextButton(onPressed: _incrementCounter, child: Icon(Icons.add)),
-      TextButton(onPressed: _decrementCounter, child: Icon(Icons.remove)),
-      TextButton(onPressed: _restartCounter, child: Icon(Icons.exposure_zero)),
+      TextButton(onPressed: _incrementCounter, child: const Icon(Icons.add)),
+      TextButton(onPressed: _decrementCounter, child: const Icon(Icons.remove)),
+      TextButton(onPressed: _restartCounter, child: const Icon(Icons.exposure_zero)),
     ];
   }
 }
