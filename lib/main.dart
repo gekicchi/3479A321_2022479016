@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+const String catIcon =
+    'C:/Users/oyarz/Desktop/moviles/3479A321_2022479016/assets/icons/cat_paw.svg';
 
 void main() {
   runApp(const MyApp());
@@ -37,13 +41,13 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _decrementCounter(){
+  void _decrementCounter() {
     setState(() {
       _counter--;
     });
   }
 
-  void _restartCounter(){
+  void _restartCounter() {
     setState(() {
       _counter = 0;
     });
@@ -86,7 +90,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return [
       TextButton(onPressed: _incrementCounter, child: const Icon(Icons.add)),
       TextButton(onPressed: _decrementCounter, child: const Icon(Icons.remove)),
-      TextButton(onPressed: _restartCounter, child: const Icon(Icons.exposure_zero)),
+      TextButton(
+          onPressed: _restartCounter, child: const Icon(Icons.exposure_zero)),
     ];
   }
 }
