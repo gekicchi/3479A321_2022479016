@@ -43,23 +43,30 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(30),
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              const Text(
-                'titulo cosa xd',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const Text(
-                'Has presionado el boton estas veces:',
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Row(children: botonesDePie),
-            ]),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text(
+                  'titulo cosa xd',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const Text(
+                  'Has presionado el boton estas veces:',
+                ),
+                Text(
+                  '$_counter',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Row(
+                  children: botonesDePie,
+                ),
+              ],
+            ),
           ),
         ),
       ),
