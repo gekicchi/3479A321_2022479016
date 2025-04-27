@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'list_content.dart';
+import 'about.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -63,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 16,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: botonesDePie,
                 ),
               ],
@@ -70,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
+      persistentFooterButtons: otrasPaginas,
     );
   }
 
@@ -79,6 +83,20 @@ class _MyHomePageState extends State<MyHomePage> {
       TextButton(onPressed: _decrementCounter, child: const Icon(Icons.remove)),
       TextButton(
           onPressed: _restartCounter, child: const Icon(Icons.exposure_zero)),
+    ];
+  }
+
+  List<Widget> get otrasPaginas {
+    return [
+      TextButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ListContent()),
+          );
+        },
+        child: const Text('Lista de Contenido'),
+      ),
     ];
   }
 }
