@@ -20,9 +20,9 @@ class About extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [],
+                const Text(
+                  'Esta aplicacion tiene los contenidos pedidos hasta el laboratorio 5 del curso de dispositivos moviles',
+                  style: TextStyle(fontSize: 20),
                 ),
               ],
             ),

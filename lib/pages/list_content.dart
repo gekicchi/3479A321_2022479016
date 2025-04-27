@@ -2,7 +2,15 @@ import 'package:flutter/material.dart';
 import 'about.dart';
 
 class ListContent extends StatelessWidget {
-  const ListContent({super.key});
+  ListContent({super.key});
+
+  final List<String> elementos = [
+    'Harry Potter',
+    'Percy Jackson',
+    'Alicia en el Pais de las Maravillas',
+    'Mujercitas',
+    'Orgullo y Prejuicio'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -10,25 +18,13 @@ class ListContent extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Lista de Contenido'),
       ),
-      body: Card(
-        color: Colors.lightBlue,
-        margin: EdgeInsets.all(25.0),
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(30),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [],
-                ),
-              ],
-            ),
-          ),
-        ),
+      body: ListView.builder(
+        itemCount: elementos.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(elementos[index]),
+          );
+        },
       ),
       persistentFooterButtons: [
         TextButton(
