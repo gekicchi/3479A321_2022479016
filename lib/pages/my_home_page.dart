@@ -6,11 +6,62 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() {
+    print("create state");
+    return _MyHomePageState();
+  }
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  @override
+  bool mounted = false;
+
+  _MyHomePageState() {
+    mounted = true;
+  }
+
+  @override
+  void initState() {
+    print('initState() called');
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    print('didChangeDependencies() called');
+    super.didChangeDependencies();
+  }
+
+  @override
+  void setState(VoidCallback fn) {
+    print('setState() called');
+    super.setState(fn);
+  }
+
+  @override
+  void didUpdateWidget(covariant MyHomePage oldWidget) {
+    print('didUpdateWidget() called');
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void deactivate() {
+    print('deactivate() called');
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    print('dispose() called');
+    super.dispose();
+  }
+
+  @override
+  void reassemble() {
+    print('reassemble() called');
+    super.reassemble();
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -32,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print("build() called");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
