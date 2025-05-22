@@ -1,4 +1,6 @@
+import 'package:application_laboratorio/provider/appdata.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'list_content.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -13,7 +15,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   @override
   bool mounted = false;
 
@@ -63,24 +64,6 @@ class _MyHomePageState extends State<MyHomePage> {
     super.reassemble();
   }
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
-  }
-
-  void _restartCounter() {
-    setState(() {
-      _counter = 0;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     print("build() called");
@@ -109,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   'Has presionado el boton estas veces:',
                 ),
                 Text(
-                  '$_counter',
+                  '${context.read<AppData>().counter}',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const SizedBox(
@@ -130,10 +113,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Widget> get botonesDePie {
     return [
-      TextButton(onPressed: _incrementCounter, child: const Icon(Icons.add)),
-      TextButton(onPressed: _decrementCounter, child: const Icon(Icons.remove)),
       TextButton(
-          onPressed: _restartCounter, child: const Icon(Icons.exposure_zero)),
+          onPressed: context.read<AppData>().incrementCounter,
+          child: const Icon(Icons.add)),
+      TextButton(
+          onPressed: context.read<AppData>().decrementCounter,
+          child: const Icon(Icons.remove)),
+      TextButton(
+          onPressed: context.read<AppData>().resetCounter,
+          child: const Icon(Icons.exposure_zero)),
     ];
   }
 

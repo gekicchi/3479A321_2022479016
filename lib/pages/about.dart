@@ -1,4 +1,6 @@
+import 'package:application_laboratorio/provider/appdata.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class About extends StatelessWidget {
   const About({super.key});
@@ -21,8 +23,16 @@ class About extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text(
-                  'Esta aplicacion tiene los contenidos pedidos hasta el laboratorio 5 del curso de dispositivos moviles',
+                  'Esta aplicacion tiene los contenidos pedidos hasta el laboratorio 6 del curso de dispositivos moviles',
                   style: TextStyle(fontSize: 20),
+                ),
+                Text(
+                  'Contador:',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                Text(
+                  '${context.read<AppData>().counter}',
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ],
             ),
