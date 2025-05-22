@@ -36,7 +36,7 @@ class ListContent extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const About()),
+              MaterialPageRoute(builder: (context) => About()),
             );
           },
           child: const Text('Acerca de'),

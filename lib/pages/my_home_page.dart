@@ -85,14 +85,14 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text(
-                  'titulo cosa xd',
+                  'Mi Aplicacion de Laboratorio',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 const Text(
                   'Has presionado el boton estas veces:',
                 ),
                 Text(
-                  '${context.read<AppData>().counter}',
+                  '${context.watch<AppData>().counter}',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const SizedBox(
@@ -102,6 +102,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: botonesDePie,
                 ),
+                Text('Nombre de usuario: ${context.watch<AppData>().username}'),
+                TextButton(
+                    onPressed: context.read<AppData>().toggleRestart,
+                    child: Text('Mostrar/Ocultar Cero'))
               ],
             ),
           ),
@@ -112,17 +116,19 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<Widget> get botonesDePie {
-    return [
-      TextButton(
-          onPressed: context.read<AppData>().incrementCounter,
-          child: const Icon(Icons.add)),
-      TextButton(
-          onPressed: context.read<AppData>().decrementCounter,
-          child: const Icon(Icons.remove)),
-      TextButton(
-          onPressed: context.read<AppData>().resetCounter,
-          child: const Icon(Icons.exposure_zero)),
-    ];
+    final btnPlus = TextButton(
+        onPressed: context.read<AppData>().incrementCounter,
+        child: const Icon(Icons.add));
+
+    final btnMinus = TextButton(
+        onPressed: context.read<AppData>().decrementCounter,
+        child: const Icon(Icons.remove));
+
+    final btnZero = TextButton(
+        onPressed: context.read<AppData>().resetCounter,
+        child: const Icon(Icons.exposure_zero));
+
+    return [btnPlus, btnMinus, if (context.watch<AppData>().restart) btnZero];
   }
 
   List<Widget> get otrasPaginas {

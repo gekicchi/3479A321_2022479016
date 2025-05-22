@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class About extends StatelessWidget {
-  const About({super.key});
+  About({super.key});
+  final textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +25,26 @@ class About extends StatelessWidget {
               children: [
                 const Text(
                   'Esta aplicacion tiene los contenidos pedidos hasta el laboratorio 6 del curso de dispositivos moviles',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 12),
                 ),
                 Text(
                   'Contador:',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 Text(
-                  '${context.read<AppData>().counter}',
+                  '${context.watch<AppData>().counter}',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
+                Text('Nombre de usuario: ${context.read<AppData>().username}'),
+                TextField(
+                  controller: textController,
+                  decoration: InputDecoration(hintText: 'Nuevo Usuario'),
+                ),
+                TextButton(
+                    onPressed: () => context
+                        .read<AppData>()
+                        .changeUsername(textController.text),
+                    child: Text('Cambiar Nombre')),
               ],
             ),
           ),
