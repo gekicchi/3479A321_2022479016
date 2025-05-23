@@ -13,7 +13,7 @@ class About extends StatelessWidget {
         title: const Text('Acerca de'),
       ),
       body: Card(
-        color: Colors.red,
+        color: const Color.fromARGB(255, 226, 117, 109),
         margin: EdgeInsets.all(55.0),
         child: Center(
           child: Padding(
@@ -50,13 +50,6 @@ class About extends StatelessWidget {
           ),
         ),
       ),
-      persistentFooterButtons: [
-        TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text('Volver')),
-      ],
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'about.dart';
 
 class ListContent extends StatelessWidget {
   ListContent({super.key});
@@ -26,22 +25,6 @@ class ListContent extends StatelessWidget {
           );
         },
       ),
-      persistentFooterButtons: [
-        TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text('Volver')),
-        TextButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => About()),
-            );
-          },
-          child: const Text('Acerca de'),
-        ),
-      ],
     );
   }
 }

@@ -2,6 +2,8 @@ import 'package:application_laboratorio/provider/appdata.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'list_content.dart';
+import 'about.dart';
+import 'preferences.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -9,7 +11,6 @@ class MyHomePage extends StatefulWidget {
 
   @override
   State<MyHomePage> createState() {
-    print("create state");
     return _MyHomePageState();
   }
 }
@@ -23,56 +24,34 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  void initState() {
-    print('initState() called');
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    print('didChangeDependencies() called');
-    super.didChangeDependencies();
-  }
-
-  @override
-  void setState(VoidCallback fn) {
-    print('setState() called');
-    super.setState(fn);
-  }
-
-  @override
-  void didUpdateWidget(covariant MyHomePage oldWidget) {
-    print('didUpdateWidget() called');
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  void deactivate() {
-    print('deactivate() called');
-    super.deactivate();
-  }
-
-  @override
-  void dispose() {
-    print('dispose() called');
-    super.dispose();
-  }
-
-  @override
-  void reassemble() {
-    print('reassemble() called');
-    super.reassemble();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    print("build() called");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      //persistentFooterButtons: botonesDePie,
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.all(30),
+          children: [
+            ListTile(
+              title: Text('Lista de Contenido'),
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ListContent())),
+            ),
+            ListTile(
+              title: Text('Detalles'),
+              onTap: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => About())),
+            ),
+            ListTile(
+              title: Text('Preferencias'),
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Preferences())),
+            ),
+          ],
+        ),
+      ),
       body: Card(
         color: Colors.green,
         margin: const EdgeInsets.all(45.0),
@@ -111,7 +90,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      persistentFooterButtons: otrasPaginas,
     );
   }
 
@@ -129,19 +107,5 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.exposure_zero));
 
     return [btnPlus, btnMinus, if (context.watch<AppData>().restart) btnZero];
-  }
-
-  List<Widget> get otrasPaginas {
-    return [
-      TextButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ListContent()),
-          );
-        },
-        child: const Text('Lista de Contenido'),
-      ),
-    ];
   }
 }
