@@ -1,5 +1,6 @@
 import 'package:application_laboratorio/provider/appdata.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'list_content.dart';
 import 'about.dart';
@@ -16,11 +17,40 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late String urlImagen = '1';
+
   @override
   bool mounted = false;
 
   _MyHomePageState() {
     mounted = true;
+  }
+
+  void _getNewImage() async {
+    // String counterNum = '${context.read<AppData>().counter}';
+    // urlImagen = 'https://picsum.photos/250?image=$counterNum';
+
+    String newImageURL = '${context.read<AppData>().counter}';
+    print('imageURL: $newImageURL');
+    try {
+      final response =
+          await http.post(Uri.https('picsum.photos', '250?image=$newImageURL'));
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      if (response.statusCode == 200) {
+        setState(() {
+          urlImagen = newImageURL;
+        });
+      } else {
+        setState(() {
+          urlImagen = '';
+        });
+      }
+    } catch (e) {
+      setState(() {
+        urlImagen = '';
+      });
+    }
   }
 
   @override
@@ -40,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(builder: (context) => ListContent())),
             ),
             ListTile(
-              title: Text('Detalles'),
+              title: Text('Detalle'),
               onTap: () => Navigator.push(
                   context, MaterialPageRoute(builder: (context) => About())),
             ),
@@ -67,6 +97,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   'Mi Aplicacion de Laboratorio',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
+                Image.network(
+                  urlImagen.isNotEmpty ? urlImagen : '',
+                  width: 250,
+                  height: 250,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, StackTrace) {
+                    return Center(
+                      child: Text(
+                        'Fallo al cargar la imagen',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    );
+                  },
+                ),
                 const Text(
                   'Has presionado el boton estas veces:',
                 ),
@@ -84,7 +128,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text('Nombre de usuario: ${context.watch<AppData>().username}'),
                 TextButton(
                     onPressed: context.read<AppData>().toggleRestart,
-                    child: Text('Mostrar/Ocultar Cero'))
+                    child: Text('Mostrar/Ocultar Cero')),
+                TextButton(
+                    onPressed: () {
+                      _getNewImage();
+                    },
+                    child: Text('Refrescar Imagen'))
               ],
             ),
           ),
