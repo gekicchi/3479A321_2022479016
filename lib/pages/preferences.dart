@@ -32,7 +32,12 @@ class _PreferenceState extends State<Preferences> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text('Preferencias'),
       ),
-      body: Padding(padding: EdgeInsets.all(45)),
+      body: Padding(
+        padding: EdgeInsets.all(45),
+        child: Column(
+          children: [],
+        ),
+      ),
     );
   }
 
