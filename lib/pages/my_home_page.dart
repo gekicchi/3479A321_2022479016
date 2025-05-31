@@ -30,13 +30,10 @@ class _MyHomePageState extends State<MyHomePage> {
     // String counterNum = '${context.read<AppData>().counter}';
     // urlImagen = 'https://picsum.photos/250?image=$counterNum';
 
-    String newImageURL = '${context.read<AppData>().counter}';
-    print('imageURL: $newImageURL');
+    final newImageURL =
+        'https://picsum.photos/250?image=${context.read<AppData>().counter}';
     try {
-      final response =
-          await http.post(Uri.https('picsum.photos', '250?image=$newImageURL'));
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+      final response = await http.get(Uri.parse(newImageURL));
       if (response.statusCode == 200) {
         setState(() {
           urlImagen = newImageURL;
@@ -102,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 250,
                   height: 250,
                   fit: BoxFit.cover,
-                  errorBuilder: (context, error, StackTrace) {
+                  errorBuilder: (context, error, stackTrace) {
                     return Center(
                       child: Text(
                         'Fallo al cargar la imagen',
