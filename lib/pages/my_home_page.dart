@@ -7,8 +7,6 @@ import 'package:provider/provider.dart';
 import 'list_content.dart';
 import 'about.dart';
 import 'preferences.dart';
-import 'package:camera/camera.dart';
-import 'picture_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});

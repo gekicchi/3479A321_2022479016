@@ -1,8 +1,6 @@
 import 'dart:io' show File;
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart';
 
 class PictureScreen extends StatefulWidget {
   const PictureScreen({super.key, required this.camera});
