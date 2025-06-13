@@ -1,10 +1,14 @@
+import 'package:application_laboratorio/pages/picture_screen.dart';
 import 'package:application_laboratorio/provider/appdata.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'list_content.dart';
 import 'about.dart';
 import 'preferences.dart';
+import 'package:camera/camera.dart';
+import 'picture_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -18,6 +22,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late String urlImagen = '1';
+  late List<CameraDescription> cameras;
+  late CameraDescription firstCamera;
 
   @override
   bool mounted = false;
@@ -50,6 +56,19 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  Future<void> _loadCameras() async {
+    cameras = await availableCameras();
+    setState(() {
+      firstCamera = cameras.first;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCameras();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,6 +94,15 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text('Preferencias'),
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Preferences())),
+            ),
+            ListTile(
+              title: Text('Camara'),
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PictureScreen(
+                            camera: firstCamera,
+                          ))),
             ),
           ],
         ),
